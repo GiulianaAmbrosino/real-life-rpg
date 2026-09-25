@@ -138,7 +138,7 @@
     .layout{grid-template-columns:1fr; padding:16px 14px 60px;}
   }
 
-  /* ---------- Sidebar: character sheet ---------- */
+  /* ---------- El sheet del personaje ---------- */
   .sheet{
     background:linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
     border:1px solid var(--line);
@@ -194,7 +194,7 @@
   }
   .reset-link:hover{color:var(--danger);}
 
-  /* ---------- Main: quest board ---------- */
+  /* ---------- El main de las misiones ---------- */
   .board-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px; flex-wrap:wrap; gap:10px;}
   .board-head h1{font-size:26px; margin:0;}
   .board-sub{color:var(--parchment-dim); font-size:13.5px; margin:0 0 22px;}
@@ -301,5 +301,5 @@
   }
 
 
-/* Motion polish */
+/* animación pulida que antes no funcionaba  */
 body{animation:fadeIn .55s ease both}.scroll,.sheet,.new-quest,.quest,.log-item{animation:riseIn .45s both}.quest{animation-delay:calc(var(--i,0) * 35ms)}.quest:hover{transform:translateX(4px);border-color:var(--gold-soft);box-shadow:0 8px 22px #0003}.qcheck{transition:transform .2s,background .2s}.quest.done .qcheck{transform:scale(1.12)}.add-btn,.begin-btn,.cat-tab,.class-card{transition:all .2s ease}.add-btn:active,.begin-btn:active{transform:scale(.97)}.xp-bar-fill{position:relative;overflow:hidden}.xp-bar-fill:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,#ffffff55 50%,transparent 80%);transform:translateX(-100%);animation:shimmer 3s infinite}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes riseIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes shimmer{to{transform:translateX(100%)}}
