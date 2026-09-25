@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#14180F"><title>Bitácora del Aventurero</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/styles.css"><style>#auth-form input{display:block;width:100%;margin-bottom:18px;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--parchment);padding:12px 14px;font-size:15px}.auth-tabs{display:flex;gap:8px;margin-bottom:22px}.sheet-top{flex-wrap:wrap}.logout-btn{background:transparent;border:1px solid var(--line);color:var(--parchment-dim);padding:8px 12px;border-radius:4px;margin-top:12px;width:100%}</style></head><body>
+
+<!-- Auth -->
+<div id="onboarding"><div class="scroll"><p class="eyebrow">Bitácora del Aventurero</p><h1>Tu vida, como una partida</h1><p class="lede">Creá tu cuenta o iniciá sesión para continuar tu aventura desde cualquier dispositivo.</p><div class="auth-tabs"><button class="cat-tab active" id="show-register">Crear cuenta</button><button class="cat-tab" id="show-login">Iniciar sesión</button></div><form id="auth-form"><div id="register-name"><label class="field-label" for="auth-name">Nombre de aventurero</label><input id="auth-name" type="text" placeholder="Tu nombre" maxlength="24" autocomplete="name"></div><label class="field-label" for="auth-email">Email</label><input id="auth-email" type="email" placeholder="tu@email.com" required autocomplete="email"><label class="field-label" for="auth-password">Contraseña</label><input id="auth-password" type="password" placeholder="Mínimo 8 caracteres" required minlength="8" autocomplete="new-password"><div id="class-picker"><label class="field-label">Elegí tu clase</label><div class="class-grid" id="class-grid"></div></div><p id="auth-error" role="alert" style="color:var(--danger);font-size:13px"></p><button class="begin-btn" id="begin-btn" type="submit">Crear cuenta y comenzar</button></form></div></div>
+<!-- ============ Mí app ============ -->
+<div id="app">
+  <div class="layout">
+
+    <!-- Character sheet -->
+    <aside class="sheet">
+      <div class="sheet-top">
+        <div class="avatar-badge" id="avatar-badge"></div>
+        <div>
+          <p class="hero-name" id="hero-name-display"></p>
+          <p class="hero-title" id="hero-title-display"></p>
+        </div>
+      </div>
+
+      <div class="xp-block">
+        <div class="xp-row">
+          <span class="lvl">Nivel <span id="lvl-num"></span></span>
+          <span class="mono" id="xp-num"></span>
+        </div>
+        <div class="xp-bar-track"><div class="xp-bar-fill" id="xp-bar"></div></div>
+      </div>
+
+      <div class="streak-row">
+        <span class="flame">🔥</span>
+        <span>Racha: <b id="streak-num">0</b> día(s)</span>
+      </div>
+
+      <div class="stat-list">
+        <div class="stat-row">
+          <div class="stat-head"><span class="sname">💪 Cuerpo</span><span class="sval mono" id="sv-cuerpo">0</span></div>
+          <div class="stat-track"><div class="stat-fill cuerpo" id="sf-cuerpo"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-head"><span class="sname">🧠 Mente</span><span class="sval mono" id="sv-mente">0</span></div>
+          <div class="stat-track"><div class="stat-fill mente" id="sf-mente"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-head"><span class="sname">🕊️ Espíritu</span><span class="sval mono" id="sv-espiritu">0</span></div>
+          <div class="stat-track"><div class="stat-fill espiritu" id="sf-espiritu"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-head"><span class="sname">⚔️ Disciplina</span><span class="sval mono" id="sv-disciplina">0</span></div>
+          <div class="stat-track"><div class="stat-fill disciplina" id="sf-disciplina"></div></div>
+        </div>
+      </div>
+
+      <button class="reset-link" id="reset-btn">Borrar personaje y empezar de nuevo</button>
+    </aside>
+
+    <!-- Misiones -->
+    <main>
+      <div class="board-head">
+        <h1>Lista de misiones</h1>
+      </div>
+      <p class="board-sub">Completá misiones para ganar experiencia. Las misiones diarias se reinician cada día.</p>
+
+      <div class="new-quest">
+        <h2>Nueva misión</h2>
+        <div class="nq-row">
+          <input type="text" id="nq-name" placeholder="Ej: Caminar 30 minutos" maxlength="60">
+          <select id="nq-cat">
+            <option value="cuerpo">💪 Cuerpo</option>
+            <option value="mente">🧠 Mente</option>
+            <option value="espiritu">🕊️ Espíritu</option>
+            <option value="disciplina">⚔️ Disciplina</option>
+          </select>
+          <select id="nq-diff">
+            <option value="10">Fácil · 10 XP</option>
+            <option value="25" selected>Media · 25 XP</option>
+            <option value="50">Difícil · 50 XP</option>
+            <option value="100">Épica · 100 XP</option>
+          </select>
+          <select id="nq-repeat">
+            <option value="daily">Diaria</option>
+            <option value="once">Una vez</option>
+          </select>
+          <button class="add-btn" id="add-btn">Agregar misión</button>
+        </div>
+      </div>
+
+      <div class="cat-tabs" id="cat-tabs">
+        <button class="cat-tab active" data-cat="all">Todas</button>
+        <button class="cat-tab" data-cat="cuerpo">💪 Cuerpo</button>
+        <button class="cat-tab" data-cat="mente">🧠 Mente</button>
+        <button class="cat-tab" data-cat="espiritu">🕊️ Espíritu</button>
+        <button class="cat-tab" data-cat="disciplina">⚔️ Disciplina</button>
+      </div>
+
+      <div class="quest-list" id="quest-list"></div>
+
+      <section class="log">
+        <h2>Diario de aventuras</h2>
+        <div class="log-list" id="log-list"></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Modelo de Subir de nivel pop up -->
+<div id="levelup-overlay">
+  <div class="levelup-card">
+    <div class="lu-glyph">⭐</div>
+    <h2>¡Subiste de nivel!</h2>
+    <p class="lu-level mono" id="lu-level-num"></p>
+    <p class="lu-title" id="lu-title-text"></p>
+    <button id="lu-close">Seguir aventura</button>
+  </div>
+</div>
+
+<script src="/js/app.js" defer></script></body></html>
